@@ -1,0 +1,40 @@
+name: Check and package
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: bash package.sh
+      - name: Verify ZIP contents
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, pathlib, zipfile
+          root = pathlib.Path('.')
+          version = json.loads((root / 'extension/manifest.json').read_text())['version']
+          with zipfile.ZipFile(root / f'dist/youtube-new-tab-v{version}.zip') as archive:
+              assert 'manifest.json' in archive.namelist()
+              for name in archive.namelist():
+                  if not name.endswith('/'):
+                      assert archive.read(name) == (root / 'extension' / name).read_bytes(), name
+          with zipfile.ZipFile(root / f'dist/youtube-new-tab-source-v{version}.zip') as archive:
+              assert 'docs/MAC-HANDOFF.md' in archive.namelist()
+              assert not any('node_modules/' in name or name.startswith('.git/') for name in archive.namelist())
+          for line in (root / 'dist/SHA256SUMS.txt').read_text().splitlines():
+              expected, name = line.split('  ', 1)
+              assert hashlib.sha256((root / 'dist' / name).read_bytes()).hexdigest() == expected
+          print('ZIP layout, source equality and checksums passed.')
+          PY

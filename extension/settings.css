@@ -1,0 +1,19 @@
+:root { color-scheme: light dark; font: 14px/1.55 system-ui, "Microsoft YaHei", sans-serif; color: #222; background: #f7f8fa; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 345px; }
+main { width: min(100%, 500px); padding: 24px; margin: auto; }
+.brand { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; }
+small { display: block; font-size: 12px; font-weight: 400; color: #646b78; }
+.brand small { display: inline; margin-left: 8px; }
+.intro { color: #646b78; margin: 12px 0 20px; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; border-top: 1px solid #dce0e7; cursor: pointer; }
+input { accent-color: #d7223a; cursor: pointer; }
+input[type=checkbox] { width: 20px; height: 20px; flex-shrink: 0; }
+fieldset { border: 1px solid #dce0e7; border-radius: 12px; margin: 18px 0 0; padding: 12px 14px; }
+legend { padding: 0 6px; }
+.radio { display: inline-flex; align-items: center; gap: 6px; margin: 4px 16px 4px 0; cursor: pointer; }
+#status { color: #287443; font-size: 12px; min-height: 19px; }
+.hint, footer { color: #646b78; font-size: 12px; }
+footer { border-top: 1px solid #dce0e7; padding-top: 14px; margin-top: 18px; }
+:focus-visible { outline: 2px solid #ce2340; outline-offset: 4px; }
+@media (prefers-color-scheme: dark) { :root { color: #eee; background: #17191f; } small, .intro, .hint, footer { color: #aeb6c5; } .row, fieldset, footer { border-color: #3a3f4a; } #status { color: #8ed6a5; } }

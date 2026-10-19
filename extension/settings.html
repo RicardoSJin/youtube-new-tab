@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>YouTube 新标签页设置</title><link rel="stylesheet" href="settings.css"></head>
+<body>
+  <main>
+    <div class="brand"><img src="icons/48.png" width="40" height="40" alt=""><span>YouTube 新标签页<small id="version"></small></span></div>
+    <p class="intro">打开新内容，保留当前页面。</p>
+    <form id="settings">
+      <label class="row"><span>视频在新标签页打开<small>普通左键点击视频标题或封面</small></span><input type="checkbox" name="videos" role="switch" disabled></label>
+      <label class="row"><span>搜索在新标签页打开<small>顶部搜索框 Enter 或搜索按钮</small></span><input type="checkbox" name="search" role="switch" disabled></label>
+      <fieldset disabled><legend>新标签页打开后</legend><label class="radio"><input type="radio" name="active" value="true">立即切换</label><label class="radio"><input type="radio" name="active" value="false">留在后台</label></fieldset>
+    </form>
+    <p id="status" role="status" aria-live="polite">正在读取设置…</p>
+    <p class="hint">设置自动保存。Ctrl / ⌘ / Shift、鼠标中键和右键菜单保持原生行为。</p>
+    <footer>仅作用于 www.youtube.com · 不记录浏览历史</footer>
+  </main>
+  <script src="shared.js"></script><script src="settings.js"></script>
+</body></html>

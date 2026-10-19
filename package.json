@@ -1,0 +1,12 @@
+{
+  "name": "youtube-new-tab",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": ">=24" },
+  "description": "YouTube desktop new-tab navigation extension for Chrome and Edge",
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "check": "node scripts/check.cjs"
+  },
+  "devDependencies": { "jsdom": "30.1.3" }
+}
